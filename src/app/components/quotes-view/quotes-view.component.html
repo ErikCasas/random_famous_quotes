@@ -1,1 +1,41 @@
-<p>quotes-view works!</p>
+<section class="body">
+    <div class="filter">
+        <form class="filter-form">
+            <mat-form-field class="filter-select">
+                <mat-label>Select Category</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="categories">
+                    <mat-option *ngFor="let category of categories"
+                        [value]="category.name">{{category.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="filter-select">
+                <mat-label>Select items per Page</mat-label>
+                <mat-select [(ngModel)]="selectedValuePerPage" name="itemsPerPage">
+                    <mat-option *ngFor="let item of itemsPerPage"
+                        [value]="item.viewValue">{{item.viewValue}}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <button mat-fab color="accent" aria-label="icon-button with refresh icon" class="filter-select"
+                matTooltip="This button will clear the filters" matTooltipClass="tooltip" (click)="clearFilters()">
+                <mat-icon>delete_sweep</mat-icon>
+            </button>
+
+            <button mat-fab color="accent" aria-label="icon-button with refresh icon" class="filter-select"
+                matTooltip="This button will find your quotes" matTooltipClass="tooltip"
+                (click)="searchQuoteByCategory()">
+                <mat-icon>search</mat-icon>
+            </button>
+
+        </form>
+    </div>
+
+    <section class="body-search" *ngIf="showSearchIcon">
+        <img mat-card-image src="../../../assets/search.png" alt="search" class="icon-search">
+        <h3 class="text-search">Select a category to find your quotes</h3>
+    </section>
+
+    <app-card-quotes [quotes]="quotes" *ngIf="!showError"></app-card-quotes>
+    <app-empty-search *ngIf="showError"></app-empty-search>
+</section>

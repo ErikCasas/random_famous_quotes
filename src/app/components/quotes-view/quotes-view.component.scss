@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    height: calc(100vh - 64px);
+    background-color: #222823;
+}
+
+.filter{
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.filter-form{
+    display: flex;
+}
+
+.filter-select {
+    margin: 0 10px 0 10px;
+}
+
+.filter-buttons{
+    margin: 0 10px 0 10px;
+}
+
+.mat-icon {
+    font-size: 30px;
+    height: 30px ;
+    width: 30px;
+}
+
+.body-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-search{
+    width: 500px;
+}
+
+.text-search {
+    color: white;
+    font-size: 25px;
+}
