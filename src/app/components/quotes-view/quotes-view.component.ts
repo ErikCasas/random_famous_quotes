@@ -56,14 +56,13 @@ export class QuotesViewComponent implements OnInit {
     this.quotes = [];
     this.quoteService.getQuotesByTags(this.selectedValue, 2).subscribe({
       next: (data: any) => {
-        const quotes = data.results;
-        console.log();
-
+        const quotes = data.results.slice(0, 10);
         if (quotes.length === 0) {
           this.showError = true;
           this.showSearchIcon = false;
         } else {
           this.showSearchIcon = false;
+          this.showError = false;
           quotes.forEach((quote: any) => {
             const author = quote.author;
             const content = quote.content;

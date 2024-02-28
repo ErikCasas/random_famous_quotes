@@ -1,16 +1,31 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent  implements OnInit {
+
+  showIconBack: boolean = false;
 
   constructor( private router: Router,) { }
 
+   ngOnInit(): void {
+    this.showIcon()
+   }
+
+  showIcon(){
+     this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showIconBack = localStorage.getItem('showIconBack') === 'true' ? true : false
+      }
+    });
+  }
+
   redirectHome(){
-    this.router.navigate(['home'])
+    localStorage.removeItem('showIconBack');
+    this.router.navigate(['home']);
   }
 }

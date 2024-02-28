@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit {
   /* *** END FN ANIMATION TEXT *** */
   
   redirectQuotesView(){
-    this.router.navigate(['quotesView'])
+    this.router.navigate(['quotesView']);
+    localStorage.setItem('showIconBack', 'true');
   }
 }

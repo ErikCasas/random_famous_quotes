@@ -9,20 +9,12 @@
                 </mat-select>
             </mat-form-field>
 
-            <!-- <mat-form-field class="filter-select">
-                <mat-label>Select items per Page</mat-label>
-                <mat-select [(ngModel)]="selectedValuePerPage" name="itemsPerPage">
-                    <mat-option *ngFor="let item of itemsPerPage"
-                        [value]="item.viewValue">{{item.viewValue}}</mat-option>
-                </mat-select>
-            </mat-form-field> -->
-
-            <button mat-fab color="accent" aria-label="icon-button with refresh icon" class="filter-select"
+            <button mat-fab color="primary" aria-label="icon-button with refresh icon" class="filter-select"
                 matTooltip="This button will clear the filters" matTooltipClass="tooltip" (click)="clearFilters()">
                 <mat-icon>delete_sweep</mat-icon>
             </button>
 
-            <button mat-fab color="accent" aria-label="icon-button with refresh icon" class="filter-select"
+            <button mat-fab color="primary" aria-label="icon-button with refresh icon" class="filter-select"
                 matTooltip="This button will find your quotes" matTooltipClass="tooltip"
                 (click)="searchQuoteByCategory()">
                 <mat-icon>search</mat-icon>
@@ -38,4 +30,6 @@
 
     <app-card-quotes [quotes]="quotes" *ngIf="!showError"></app-card-quotes>
     <app-empty-search *ngIf="showError"></app-empty-search>
+
+    <app-footer></app-footer>
 </section>

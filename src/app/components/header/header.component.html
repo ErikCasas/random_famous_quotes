@@ -2,11 +2,10 @@
     <img src="../../../assets/quote_icon.png" alt="icon-Quotes" class="header-icon">
     <span class="header-text">Random Quotes</span>
     <span class="header-items"></span>
-    <button mat-icon-button class="mat-icon-size favorite-icon" aria-label="icon-button with refresh icon"
-    matTooltip="This button will redirect you to home and your progress will be lost"
-    matTooltipClass="tooltip"
-    aria-label="icon-button with refresh icon"
-    class="example-icon favorite-icon" (click)="redirectHome()">
-        <mat-icon color="accent">refresh</mat-icon>
+
+    <button mat-fab class="mat-icon-size favorite-icon" aria-label="icon-button with refresh icon"
+        matTooltip="This button will redirect you to home and your progress will be lost" matTooltipClass="tooltip"
+        aria-label="icon-button with refresh icon" (click)="redirectHome()" *ngIf="showIconBack">
+        <mat-icon>home</mat-icon>
     </button>
 </mat-toolbar>
