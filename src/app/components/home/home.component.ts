@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   textWelcome = ['Hello World!', 'Welcome to Random Quotes', 'Let´s start.'];
-  textColor = ['tomato', 'darkorchid', 'darkorange']; 
+  textColor = ['tomato', '#eeff41', 'darkorange']; 
 
   constructor( private router: Router,) { }
 
@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit {
   /* *** END FN ANIMATION TEXT *** */
   
   redirectQuotesView(){
-    this.router.navigate(['quotesView'])
+    this.router.navigate(['quotesView']);
+    localStorage.setItem('showIconBack', 'true');
   }
 }
