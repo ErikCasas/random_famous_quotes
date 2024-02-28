@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quote, QuoteData } from 'src/app/interfaces';
 import { APIquotesService } from 'src/app/services/apiquotes.service';
+import { CrudQuotesService } from 'src/app/services/crud-quotes.service';
 
 @Component({
   selector: 'app-quotes-view',
@@ -18,16 +19,16 @@ export class QuotesViewComponent implements OnInit {
   showError: boolean = false;
   showSearchIcon: boolean = true;
 
-  // itemsPerPage = [
-  //   { value: 1, viewValue: '1' },
-  //   { value: 5, viewValue: '5' },
-  //   { value: 10, viewValue: '10' },
-  // ];
+  showCard: boolean = false;
 
-  constructor(private quoteService: APIquotesService) {}
+  createQuote = false;
+
+  constructor(private quoteService: APIquotesService,
+    private crudService: CrudQuotesService) {}
 
   ngOnInit(): void {
     this.getTagQuotes();
+    this.getCreatedQuote();    
   }
 
   clearFilters() {
@@ -59,23 +60,55 @@ export class QuotesViewComponent implements OnInit {
         const quotes = data.results.slice(0, 10);
         if (quotes.length === 0) {
           this.showError = true;
-          this.showSearchIcon = false;
+          this.showSearchIcon = false;          
         } else {
           this.showSearchIcon = false;
           this.showError = false;
-          quotes.forEach((quote: any) => {
-            const author = quote.author;
-            const content = quote.content;
-
-            let tagCategory = {
-              author: author,
-              content: content,
-              tag: this.selectedValue,
-            };
-            this.quotes.push(tagCategory);
-          });
+          this.getQuotes(quotes);
         }
       },
     });
+  }
+ 
+  getQuotes(quotes: any){
+
+    quotes.forEach((quote: any) => {
+      const author = quote.author;
+      const content = quote.content;
+
+      let tagCategory = {
+        author: author,
+        content: content,
+        tag: this.selectedValue,
+      };
+      this.quotes.push(tagCategory);
+    });
+
+    this.getCreatedQuote();
+  }
+
+  getCreatedQuote(){
+    const newQuote: Quote = this.crudService.getSavedQuotes();
+    console.log(newQuote);
+    if(newQuote && newQuote.author && newQuote.content){
+      this.crudService.addQuote(this.quotes, newQuote);
+      this.showCard = true;
+      this.showSearchIcon = false;
+    } else {
+      this.showCard = false;
+      this.showSearchIcon = true;
+    }
+  }
+
+  deleteCreatedNote(){
+    if(this.quotes.length > 0){
+      this.crudService.deleteQuote();
+    } else {
+      this.showSearchIcon = true;
+    }
+  }
+
+  closeModal(){
+    this.createQuote = false;
   }
 }

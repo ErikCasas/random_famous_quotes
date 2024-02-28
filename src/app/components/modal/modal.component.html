@@ -1,0 +1,30 @@
+<div>
+    <div class="modal-background"></div>
+
+    <div class="modal">
+        <div class="modal-body">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Author</mat-label>
+                    <input matInput placeholder="Ex. Oda" name="author" [(ngModel)]="createQuote.author">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Category</mat-label>
+                    <input matInput placeholder="Ex. Inspiration" name="tag" [(ngModel)]="createQuote.tag">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Leave a quote</mat-label>
+                    <textarea matInput placeholder="Ex. It makes me feel..." name="quote"
+                        [(ngModel)]="createQuote.content"></textarea>
+                </mat-form-field>
+            </form>
+            <button mat-mini-fab (click)="saveQuote()">
+                <mat-icon>check</mat-icon>
+            </button>
+        </div>
+    </div>
+
+
+</div>

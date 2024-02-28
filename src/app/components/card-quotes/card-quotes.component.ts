@@ -9,7 +9,17 @@ export class CardQuotesComponent implements OnInit {
 
   @Input() quotes: any;
 
-  ngOnInit(): void {
+  createQuote = false;
 
+  constructor() { }
+
+  ngOnInit(): void {
+    console.log(this.quotes);
   }
+
+  closeModal(){
+    this.createQuote = false;
+  }
+
+
 }
