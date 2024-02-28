@@ -34,10 +34,10 @@
         </div>
     </section>
 
-    <app-modal *ngIf="createQuote" (closeModal)="closeModal()"  (newQuoteAdded)="getCreatedQuote()">
+    <app-modal *ngIf="createQuote" (closeModal)="closeModal()"  (newQuoteAdded)="getCreatedQuote()" (editQuote)="getEditQuote()">
     </app-modal>
 
-    <app-card-quotes [quotes]="quotes" *ngIf="!showError"></app-card-quotes>
+    <app-card-quotes [quotes]="quotes" (newQuoteDeleted)="clearFilters()" *ngIf="!showError"></app-card-quotes>
     <app-empty-search *ngIf="showError"></app-empty-search>
 
     <app-footer></app-footer>

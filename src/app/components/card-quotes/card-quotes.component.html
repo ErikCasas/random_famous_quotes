@@ -8,11 +8,24 @@
                     </div>
                     <mat-card-title>{{quote.author}}</mat-card-title>
                     <mat-card-subtitle>{{quote.tag}}</mat-card-subtitle>
+                    <mat-icon (click)="closeModal()">close</mat-icon>
                 </mat-card-header>
                 <mat-card-content>
                     <p class="card-content">{{quote.content}} </p>
                 </mat-card-content>
+                <div class="card-icons" *ngIf="quote.icon">
+                    <button mat-mini-fab color="warn" (click)="deleteQuote()"
+                        matTooltip="Careful! This button will delete all quotes">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="openModal()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
             </mat-card>
         </div>
     </div>
+
+    <app-modal *ngIf="createQuote" (closeModal)="closeModal()"  (newQuoteAdded)="editQuote()">
+    </app-modal>
 </section>

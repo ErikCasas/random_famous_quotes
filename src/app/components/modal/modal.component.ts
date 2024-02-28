@@ -8,8 +8,9 @@ import { CrudQuotesService } from 'src/app/services/crud-quotes.service';
 })
 export class ModalComponent {
 
-  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
-  @Output() newQuoteAdded: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closeModal: EventEmitter<any> = new EventEmitter<any>();
+  @Output() newQuoteAdded: EventEmitter<any> = new EventEmitter<any>();
+  @Output() editQuote: EventEmitter<any> = new EventEmitter<any>();
 
   createQuote = {
     author: '',
@@ -17,20 +18,27 @@ export class ModalComponent {
     tag: ''
   };
 
+  showIcons: boolean = false;
+
   constructor(private crudService: CrudQuotesService) {}
 
-  saveQuote(){
+  saveQuote(): void {
     const newQuote = {
       author: this.createQuote.author,
       content: this.createQuote.content,
-      tag: this.createQuote.tag
+      tag: this.createQuote.tag,
+      icon: true
+    };
+  
+    if (newQuote && newQuote.author !== '') {
+      this.crudService.editQuote(newQuote);
+      this.editQuote.emit(newQuote);
+      location.reload();
+    } else {
+      this.crudService.addNewQuote(newQuote);
+      this.newQuoteAdded.emit(newQuote);
     }
-    console.log(newQuote);
-
-    this.crudService.addNewQuote(newQuote);
-    
     this.closeModal.emit();
-    this.newQuoteAdded.emit();
   }
 
 }

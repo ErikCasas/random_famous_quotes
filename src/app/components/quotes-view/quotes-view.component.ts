@@ -32,7 +32,7 @@ export class QuotesViewComponent implements OnInit {
   }
 
   clearFilters() {
-    this.selectedValue = null; // Restablecer la selección de categoría
+    this.selectedValue = null;
     this.selectedValuePerPage = null;
     this.quotes = [];
     this.showError = false;
@@ -54,22 +54,24 @@ export class QuotesViewComponent implements OnInit {
   }
 
   searchQuoteByCategory() {
+    this.showError = false;
+    this.showSearchIcon = true;
     this.quotes = [];
+    
     this.quoteService.getQuotesByTags(this.selectedValue, 2).subscribe({
       next: (data: any) => {
         const quotes = data.results.slice(0, 10);
         if (quotes.length === 0) {
           this.showError = true;
-          this.showSearchIcon = false;          
-        } else {
           this.showSearchIcon = false;
-          this.showError = false;
+        } else {
           this.getQuotes(quotes);
+          this.showSearchIcon = false;
         }
       },
     });
   }
- 
+
   getQuotes(quotes: any){
 
     quotes.forEach((quote: any) => {
@@ -89,7 +91,6 @@ export class QuotesViewComponent implements OnInit {
 
   getCreatedQuote(){
     const newQuote: Quote = this.crudService.getSavedQuotes();
-    console.log(newQuote);
     if(newQuote && newQuote.author && newQuote.content){
       this.crudService.addQuote(this.quotes, newQuote);
       this.showCard = true;
@@ -110,5 +111,9 @@ export class QuotesViewComponent implements OnInit {
 
   closeModal(){
     this.createQuote = false;
+  }
+
+  getEditQuote(){
+    location.reload();
   }
 }
