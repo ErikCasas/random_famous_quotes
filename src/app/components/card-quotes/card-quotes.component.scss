@@ -21,3 +21,15 @@
     margin-top: 15px;
     text-align: justify;
  }
+
+ .card-icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+    top: 140px;
+
+    button {
+        margin-right: 10px;
+    }
+ }

@@ -14,21 +14,30 @@
                 <mat-icon>delete_sweep</mat-icon>
             </button>
 
-            <button mat-fab color="primary" aria-label="icon-button with refresh icon" class="filter-select"
+            <button mat-fab color="primary" aria-label="icon-button with search icon" class="filter-select"
                 matTooltip="This button will find your quotes" matTooltipClass="tooltip"
                 (click)="searchQuoteByCategory()">
                 <mat-icon>search</mat-icon>
             </button>
 
+            <button mat-fab aria-label="icon-button with add icon" class="filter-select"
+                matTooltip="This button will add your quote" matTooltipClass="tooltip" (click)="createQuote = true">
+                <mat-icon>add_circle</mat-icon>
+            </button>
         </form>
     </div>
 
     <section class="body-search" *ngIf="showSearchIcon">
-        <img mat-card-image src="../../../assets/search.png" alt="search" class="icon-search">
-        <h3 class="text-search">Select a category to find your quotes</h3>
+        <div>
+            <img mat-card-image src="../../../assets/search.png" alt="search" class="icon-search">
+            <h3 class="text-search">Select a category to find your quotes or create your own</h3>
+        </div>
     </section>
 
-    <app-card-quotes [quotes]="quotes" *ngIf="!showError"></app-card-quotes>
+    <app-modal *ngIf="createQuote" (closeModal)="closeModal()"  (newQuoteAdded)="getCreatedQuote()" (editQuote)="getEditQuote()">
+    </app-modal>
+
+    <app-card-quotes [quotes]="quotes" (newQuoteDeleted)="clearFilters()" *ngIf="!showError"></app-card-quotes>
     <app-empty-search *ngIf="showError"></app-empty-search>
 
     <app-footer></app-footer>
