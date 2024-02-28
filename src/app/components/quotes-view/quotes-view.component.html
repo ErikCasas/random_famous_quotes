@@ -9,18 +9,18 @@
                 </mat-select>
             </mat-form-field>
 
-            <button mat-fab color="primary" aria-label="icon-button with refresh icon" class="filter-select"
+            <button mat-fab color="primary" aria-label="icon-button with refresh icon" class="filter-button"
                 matTooltip="This button will clear the filters" matTooltipClass="tooltip" (click)="clearFilters()">
                 <mat-icon>delete_sweep</mat-icon>
             </button>
 
-            <button mat-fab color="primary" aria-label="icon-button with search icon" class="filter-select"
+            <button mat-fab color="primary" aria-label="icon-button with refresh icon" class="filter-button"
                 matTooltip="This button will find your quotes" matTooltipClass="tooltip"
                 (click)="searchQuoteByCategory()">
                 <mat-icon>search</mat-icon>
             </button>
 
-            <button mat-fab aria-label="icon-button with add icon" class="filter-select"
+            <button mat-fab aria-label="icon-button with add icon" class="filter-button"
                 matTooltip="This button will add your quote" matTooltipClass="tooltip" (click)="createQuote = true">
                 <mat-icon>add_circle</mat-icon>
             </button>
@@ -28,7 +28,7 @@
     </div>
 
     <section class="body-search" *ngIf="showSearchIcon">
-        <div>
+        <div class="body-container">
             <img mat-card-image src="../../../assets/search.png" alt="search" class="icon-search">
             <h3 class="text-search">Select a category to find your quotes or create your own</h3>
         </div>

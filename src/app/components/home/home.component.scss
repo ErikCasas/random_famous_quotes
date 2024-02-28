@@ -19,7 +19,6 @@
     font-size: 4em;
     text-align: center;
     height: 200px;
-    width: 600px;
     display: block;
     position: absolute;
     color: white;
@@ -49,4 +48,12 @@
     width: 250px;
     height: 50px;
     font-size: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+    .console-container {
+        font-size: 3em;
+        height: 100px;
+    } 
+    
 }

@@ -22,6 +22,10 @@ export class ModalComponent {
 
   constructor(private crudService: CrudQuotesService) {}
 
+  closeModalQuote(){
+    this.closeModal.emit();
+  }
+
   saveQuote(): void {
     const newQuote = {
       author: this.createQuote.author,

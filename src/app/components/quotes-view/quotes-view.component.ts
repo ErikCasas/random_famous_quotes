@@ -28,7 +28,7 @@ export class QuotesViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTagQuotes();
-    this.getCreatedQuote();    
+    this.getCreatedQuote();
   }
 
   clearFilters() {
