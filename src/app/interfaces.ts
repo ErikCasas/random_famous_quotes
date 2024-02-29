@@ -1,5 +1,5 @@
 export interface Quote {
-    _id?: string;
+    _id: string;
     name: string;
     quoteCount?: number;
     author: string;
@@ -9,6 +9,7 @@ export interface Quote {
     length?: number;
     dateAdded?: string,
     dateModified?: string
+    icon?: boolean;
   }
   
 export  interface QuoteData {
