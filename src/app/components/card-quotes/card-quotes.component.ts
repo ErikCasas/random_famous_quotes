@@ -18,7 +18,7 @@ export class CardQuotesComponent implements OnInit {
   constructor(private crudService: CrudQuotesService) { }
 
   ngOnInit(): void {
-    this.crudService.getSavedQuotes()
+    this.crudService.getSavedQuotes();
   }
 
   closeModal(){

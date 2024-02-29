@@ -24,7 +24,7 @@ export class QuotesViewComponent implements OnInit {
   createQuote = false;
 
   constructor(private quoteService: APIquotesService,
-    private crudService: CrudQuotesService) {}
+    protected crudService: CrudQuotesService) {}
 
   ngOnInit(): void {
     this.getTagQuotes();
