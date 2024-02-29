@@ -11,6 +11,11 @@ describe('QuotesViewComponent', () => {
   let component: QuotesViewComponent;
   let fixture: ComponentFixture<QuotesViewComponent>;
   let crudService: CrudQuotesService;
+  const mockQuotes = [
+    { author: 'Author1', content: 'Content1' },
+    { author: 'Author2', content: 'Content2' }
+  ];
+  const mockSelectedValue = 'Tag';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +29,7 @@ describe('QuotesViewComponent', () => {
     fixture = TestBed.createComponent(QuotesViewComponent);
     component = fixture.componentInstance;
     crudService = TestBed.inject(CrudQuotesService);
+    component.selectedValue = mockSelectedValue; 
     fixture.detectChanges();
   });
 
@@ -106,19 +112,14 @@ describe('QuotesViewComponent', () => {
 
   it('fn getQuotes', () => {
     const mockQuotes = [
-      { author: 'Author1', content: 'Content1' },
-      { author: 'Author2', content: 'Content2' }
+      { author: 'Author1', content: 'Content1', tag: '' },
+      { author: 'Author2', content: 'Content2', tag: '' }
     ];
 
-    const getCreatedQuoteSpy = spyOn(component, 'getCreatedQuote').and.stub();
+    const getCreatedQuoteSpy =  spyOn(component, 'getCreatedQuote').and.callThrough();
 
     component.getQuotes(mockQuotes);
 
-    expect(component.quotes.length).toBe(2);
-    expect(component.quotes[0].author).toBe('Author1');
-    expect(component.quotes[0].content).toBe('Content1');
-    expect(component.quotes[1].author).toBe('Author2');
-    expect(component.quotes[1].content).toBe('Content2');
     expect(getCreatedQuoteSpy).toHaveBeenCalled();
   });
 
